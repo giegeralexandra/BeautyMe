@@ -1,4 +1,5 @@
 class Customer < ApplicationRecord
-    has_many :appointments 
-    has_many :stylists, through: appointments
+    belongs_to :user 
+    has_many :appointments
+    has_many :categories, through :appointments 
 end
