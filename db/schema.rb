@@ -10,28 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_195651) do
+ActiveRecord::Schema.define(version: 2021_01_17_203300) do
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "appointment_time"
-    t.integer "appointment_length"
+    t.integer "duration"
+    t.float "price"
     t.integer "customer_id"
-    t.integer "stylist_id"
+    t.integer "category_id"
+    t.integer "user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
   end
 
   create_table "customers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.string "password_digest"
+    t.string "phone_number"
+    t.integer "user_id"
   end
 
-  create_table "stylists", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.string "stylist_type"
   end
 
 end
