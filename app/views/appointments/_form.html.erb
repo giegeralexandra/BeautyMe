@@ -1,0 +1,53 @@
+<%= form_for @appointment do |f| %> 
+
+    <%= f.label :title %> 
+    <%= f.text_field :title %>
+    <br>
+    <br>
+    <%= f.label :date %> 
+    <%= f.date_field :date %>
+    <br>
+    <br>
+    <%= f.label :start_time %> 
+    <%= f.time_select :start_time %>
+    <br>
+    <br>
+    <%= f.label :end_time %> 
+    <%= f.time_select :end_time %>
+    <br>
+    <br>
+    <%= f.label :price %> 
+    <%= f.text_field :price %>
+    <br>
+    <br>
+    <h2>Choose or Create New Customer</h2>
+    <%= f.label :customer %> 
+    <%= f.collection_select(:customer_id, Customer.all, :id, :first_name) %>
+    <br>
+    <br>
+    <%= f.fields_for :customer, Customer.new do |c| %>
+        <%= c.label :first_name %>
+        <%= c.text_field :first_name %><br><br>
+        <%= c.label :last_name %>
+        <%= c.text_field :last_name %><br><br>
+        <%= c.label :email %>
+        <%= c.email_field :email %><br><br>
+        <%= c.label :phone_number %>
+        <%= c.telephone_field :phone_number %>
+    <% end %>
+    <br>
+    <br>
+    <h2>Choose or Create New Category</h2>
+    <%= f.label :category %> 
+    <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+    <br>
+    <br>
+    <%= fields_for :category, Category.new do |c| %>
+        <%= c.label :name %>
+        <%= c.text_field :name %>
+    <% end %>
+    <br>
+    <br>
+    <%= f.submit "Create Appointment" %>
+
+<% end %> 
