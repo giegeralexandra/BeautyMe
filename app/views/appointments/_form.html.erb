@@ -17,7 +17,7 @@
     <br>
     <br>
     <%= f.label :price %> 
-    <%= f.text_field :price %>
+    <%= f.number_field :price %>
     <br>
     <br>
     <h2>Choose or Create New Customer</h2>
@@ -33,7 +33,7 @@
         <%= c.label :email %>
         <%= c.email_field :email %><br><br>
         <%= c.label :phone_number %>
-        <%= c.telephone_field :phone_number %>
+        <%= c.text_field :phone_number %>
     <% end %>
     <br>
     <br>
@@ -42,7 +42,7 @@
     <%= f.collection_select(:category_id, Category.all, :id, :name) %>
     <br>
     <br>
-    <%= fields_for :category, Category.new do |c| %>
+    <%= f.fields_for :category, Category.new do |c| %>
         <%= c.label :name %>
         <%= c.text_field :name %>
     <% end %>
