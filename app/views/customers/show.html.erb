@@ -1,4 +1,12 @@
-<%= @customer.first_name %>
-<%= @customer.last_name %>
-<%= @customer.email %>
-<%= @customer.phone_number %>
+<p><%= @customer.first_name %></p>
+<p><%= @customer.last_name %></p>
+<p><%= @customer.email %></p>
+<p><%= @customer.phone_number %></p>
+
+<%= @customer.appointments.each do |a| %>
+   <p><%= link_to a.title, appointment_path(a) %></p>
+   <p><%= a.date_view + a.start_time_view %><br><br>
+<% end %>
+
+<p><%= button_to "Delete Customer", customer_path(@customer), method: :delete %></p>
+<p><%= link_to "Edit Customer", edit_customer_path(@customer) %></p>

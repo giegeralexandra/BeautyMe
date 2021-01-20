@@ -33,9 +33,10 @@ class CustomersController < ApplicationController
     end
 
 
-    def destory 
+    def destroy 
         @customer = Customer.find_by(id: params[:id])
         @customer.destroy 
+        redirect_to customers_path 
     end
 
     private 
