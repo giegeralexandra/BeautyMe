@@ -1,9 +1,7 @@
-<%= current_user.appointments.each do |a| %>
-    <h3><%= a.title.capitalize %></h3>
+<h1>Upcoming Appointments</h1>
+<%= upcoming_appointments.each do |a| %>
+    <h3><%= link_to a.title.capitalize, appointment_path(a) %></h3>
     <p>Date: <%= a.date_view %></p>
     <p>Time: <%= a.start_time_view %></p>
     <p>Duration: <%= a.duration %></p>
-    <p>Price: <%= a.price_view %></p>
-    <p>Customer: <%= a.customer.full_name %></p>
-    <p>Category: <%= a.category.name.capitalize %></p>
 <% end %>

@@ -1,6 +1,9 @@
 <h3><%= @appointment.title.capitalize %></h3>
-<p>Time: <%= @appointment.start_time %></p>
+<p>Time: <%= @appointment.start_time_view %></p>
 <p>Duration: <%= @appointment.duration %></p>
 <p>Price: <%= @appointment.price_view %></p>
-<p>Customer: <%= link_to @appointment.customer.full_name, appointment_customer_path(@appointment) %></p>
+<p>Customer: <%= @appointment.customer.full_name %></p>
 <p>Category: <%= @appointment.category.name.capitalize %></p>
+
+<p><%= link_to "Delete Appointment", delete_appointment_path(@appointment) %></p>
+<p><%= link_to "Edit Appointment", edit_appointment_path(@appointment) %></p>

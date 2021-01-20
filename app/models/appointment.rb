@@ -15,6 +15,8 @@ class Appointment < ApplicationRecord
         end
     end
 
+    
+
     def appointment_end_time_cannot_be_before_start_time
         if start_time.present? && end_time.present? && end_time < start_time 
             errors.add(:end_time, "can't be before start time")
