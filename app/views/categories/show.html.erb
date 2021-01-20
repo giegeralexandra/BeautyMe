@@ -1,1 +1,15 @@
-<%= @category.name %>
+<h1><%= @category.name %></h1>
+
+<h3>Appointments</h3>
+<%= @category.appointments.each do |a| %>
+    <p><%= link_to a.name.capitalize, appointment_path(a) %></p>
+    <p><%= a.date_view + a.start_time_view %></p>
+<% end %>
+
+<h3>Customers</h3>
+<%= @category.customers.each do |c| %> 
+    <p><%= link_to c.full_name, customer_path(c) %></p>
+<% end %>
+
+<p><%= button_to "Delete Category", category_path(@category), method: :delete %></p>
+<p><%= link_to "Edit Category", edit_category_path(@category) %></p>

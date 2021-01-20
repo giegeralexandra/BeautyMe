@@ -2,20 +2,16 @@
 
 <%= form_for @appointment do |f| %> 
 
-    <%= f.label :title %> 
-    <%= f.text_field :title %>
-    <br>
-    <br>
-    <%= f.label :date %> 
-    <%= f.datetime_local_field :date %>
+    <%= f.label :name %> 
+    <%= f.text_field :name %>
     <br>
     <br>
     <%= f.label :start_time %> 
-    <%= f.time_field :start_time %>
+    <%= f.datetime_field :start_time %>
     <br>
     <br>
     <%= f.label :end_time %> 
-    <%= f.time_field :end_time %>
+    <%= f.datetime_field :end_time %>
     <br>
     <br>
     <%= f.label :price %> 

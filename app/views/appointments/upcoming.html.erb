@@ -1,7 +1,17 @@
 <h1>Upcoming Appointments</h1>
-<%= upcoming_appointments.each do |a| %>
-    <h3><%= link_to a.title.capitalize, appointment_path(a) %></h3>
-    <p>Date: <%= a.date_view %></p>
-    <p>Time: <%= a.start_time_view %></p>
-    <p>Duration: <%= a.duration %></p>
+
+<%= week_calendar(number_of_weeks: 1) do |date| %>
+    <%= date %>
+  <% end %>
+
+
+<%= if upcoming_appointments != [] %>
+    <%= upcoming_appointments.each do |a| %>
+        <h3><%= link_to a.name.capitalize, appointment_path(a) %></h3>
+        <p>Date: <%= a.date_view %></p>
+        <p>Time: <%= a.start_time_view %></p>
+        <p>Duration: <%= a.duration %></p>
+    <% end %>
+<%= else %>
+    <p>No upcoming appointmens in next 7 days<p>
 <% end %>

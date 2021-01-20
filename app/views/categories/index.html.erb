@@ -1,0 +1,4 @@
+<h1>Categories</h1>
+<%= current_user.categories.each do |c| %> 
+    <p><%= link_to c.name.capitalize, category_path(c) %></p>
+<% end %>

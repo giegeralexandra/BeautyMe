@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
                 upcoming_appointments << appt 
              end
         end
-        upcoming_appointments 
     end
 
 end

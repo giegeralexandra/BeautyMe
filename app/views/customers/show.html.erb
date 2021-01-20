@@ -4,7 +4,7 @@
 <p><%= @customer.phone_number %></p>
 
 <%= @customer.appointments.each do |a| %>
-   <p><%= link_to a.title, appointment_path(a) %></p>
+   <p><%= link_to a.name, appointment_path(a) %></p>
    <p><%= a.date_view + a.start_time_view %><br><br>
 <% end %>
 

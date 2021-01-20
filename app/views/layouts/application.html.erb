@@ -14,8 +14,8 @@
     <div>
       <% if logged_in? %> 
       <%= link_to "Logout", logout_path, method: "delete" %>  |  
-      <%= link_to "Profile", user_path(current_user) %> |  
       <%= link_to "Add Appointment", new_appointment_path %>  |  
+      <%= link_to "Upcoming Appointments", "/appointments/upcoming" %>  |
       <%= link_to "All Appointments", appointments_path %> |  
       <%= link_to "Add Category", new_category_path %> |  
       <%= link_to "All Categories", categories_path %> |  

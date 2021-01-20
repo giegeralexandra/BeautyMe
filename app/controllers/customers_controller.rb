@@ -9,6 +9,7 @@ class CustomersController < ApplicationController
     def create 
         @customer = current_user.customers.build(customer_params)
         if @customer.valid?
+            @customer.save 
             redirect_to customer_path(@customer)
         else 
             render :new 
