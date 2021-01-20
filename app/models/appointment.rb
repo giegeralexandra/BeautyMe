@@ -22,23 +22,23 @@ class Appointment < ApplicationRecord
     end
 
     def duration
-        "duration"
+        ((end_time - start_time)/3600).to_s + " hours"
     end
 
     def start_time_view
-        "start_time_view"
+        start_time.strftime('%I:%M %P')
     end
 
-    def end_time_view
-        "end_time_view"
-    end
+    #def end_time_view
+        #"end_time_view"
+    #end
 
     def date_view
-        "date_view"
+        date.strftime("%A") + " " + date.strftime("%m/%d/%Y")
     end
 
     def price_view
-        "price_view"
+        "$" + price.to_s  
     end
 
 
