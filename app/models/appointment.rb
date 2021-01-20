@@ -21,6 +21,28 @@ class Appointment < ApplicationRecord
         end
     end
 
+    def duration
+        "duration"
+    end
+
+    def start_time_view
+        "start_time_view"
+    end
+
+    def end_time_view
+        "end_time_view"
+    end
+
+    def date_view
+        "date_view"
+    end
+
+    def price_view
+        "price_view"
+    end
+
+
+
 
     #def customer_attributes=(attr)
        # if attr[:first_name] != ""
