@@ -3,6 +3,7 @@ class Appointment < ApplicationRecord
     belongs_to :user
     belongs_to :category 
     accepts_nested_attributes_for :customer, :category 
+    validates :title, :date, :start_time, :end_time, :price, :customer_id, :category_id, presence: true 
 
     #def customer_attributes=(attr)
        # if attr[:first_name] != ""
