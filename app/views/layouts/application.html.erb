@@ -13,14 +13,14 @@
 
     <div>
       <% if logged_in? %> 
-      <%= link_to "Logout", logout_path, method: "delete" %>  |  
-      <%= link_to "Add Appointment", new_appointment_path %>  |  
-      <%= link_to "Upcoming Appointments", "/appointments/upcoming" %>  |
-      <%= link_to "All Appointments", appointments_path %> |  
-      <%= link_to "Add Category", new_category_path %> |  
-      <%= link_to "All Categories", categories_path %> |  
-      <%= link_to "Add Customer", new_customer_path %> |  
-      <%= link_to "All Customers", customers_path %>
+      <%= link_to "Home", root_path %> |  
+      <%= link_to "Appointments", appointments_path %> |  
+      <%= link_to "New Appointment", new_appointment_path %>  |  
+      <%= link_to "Customers", customers_path %> |  
+      <%= link_to "New Customer", new_customer_path %> |  
+      <%= link_to "Categories", categories_path %> |  
+      <%= link_to "New Category", new_category_path %> |  
+      <%= link_to "Logout", logout_path, method: "delete" %>
       <% else %>
       <%= link_to "Sign Up", signup_path %>  |  
       <%= link_to "Login", login_path %>

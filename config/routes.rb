@@ -6,6 +6,26 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
+
+resources :categories, only: [:show] do 
+  resources :appointments, only: [:show, :new, :index]
+end
+
+resources :categories, only: [:show] do 
+  resources :customers, only: [:show, :new, :index]
+end
+
+resources :customers, only: [:show] do 
+  resources :appointments, only: [:show, :new, :index]
+end
+
+resources :customers, only: [:show] do 
+  resources :categories, only: [:show, :new, :index]
+end
+
+
+
+
   resources :users 
   resources :customers 
   resources :appointments 

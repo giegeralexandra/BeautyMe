@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
 
     def new
         @category = Category.new 
+        render :new 
     end
 
     def create 
@@ -37,6 +38,30 @@ class CategoriesController < ApplicationController
         @category = Category.find_by(id: params[:id])
         @category.destroy
         redirect_to categories_path
+    end
+
+    def appointments_index 
+        @category = Category.find(params[:id])
+        @appointment = @category.appointments 
+        render template: 'appointments/index'
+    end
+
+    def appointments 
+        @category = Category.find(params[:id])
+        @appointment= Appointment.find(params[:appointment_id])
+        render template: 'appointments/show'
+    end
+
+    def customer_index 
+        @category = Category.find(params[:id])
+        @customer = @category.customers
+        render template: 'customers/index'
+    end
+
+    def customers 
+        @category = Category.find(params[:id])
+        @customer = Customer.find(params[:customer_id])
+        render template: 'customer/show'
     end
 
     private 

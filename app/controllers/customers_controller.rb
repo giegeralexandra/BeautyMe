@@ -40,6 +40,30 @@ class CustomersController < ApplicationController
         redirect_to customers_path 
     end
 
+    def appointments_index 
+        @customer = Customer.find(params[:id])
+        @appointments = @customer.appointments
+        render template: 'appointments/index'
+    end
+
+    def appointments 
+        @customer = Customer.find(params[:id])
+        @appointment = Appointment.find(params[:appointment_id])
+        render template: 'appointments/show'
+    end
+
+    def category_index 
+        @customer = Customer.find(params[:id])
+        @category = @customer.categories
+        render template: 'categories/index'
+    end
+
+    def categories 
+        @customer = Customer.find(params[:id])
+        @category = Category.find(params[:category_id])
+        render template: 'category/show'
+    end
+
     private 
 
     def customer_params 
