@@ -5,5 +5,5 @@
 <p>Customer: <%= @appointment.customer.full_name %></p>
 <p>Category: <%= @appointment.category.name.capitalize %></p>
 
-<p><%= link_to "Delete Appointment", delete_appointment_path(@appointment) %></p>
+<p><%= button_to "Delete Appointment", appointment_path(@appointment), method: :delete %></p>
 <p><%= link_to "Edit Appointment", edit_appointment_path(@appointment) %></p>

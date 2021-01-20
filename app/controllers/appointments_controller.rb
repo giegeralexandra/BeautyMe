@@ -18,16 +18,25 @@ class AppointmentsController < ApplicationController
     end
 
     def edit 
+        @appointment = current_user.appointments.find_by(id: params[:id])
     end
 
     def update
+        if @appointment = current_user.appointments.update(appointment_params)
+            redirect_to appointment_path(@appointment)
+        else 
+            render :edit 
+        end
     end
 
     def show 
         @appointment = current_user.appointments.find_by(id: params[:id])
     end
 
-    def destroy 
+    def destroy
+        @appointment = current_user.appointments.find_by(id: params[:id])
+        @appointment.destroy 
+        redirect_to appointments_path 
     end
 
     private 
