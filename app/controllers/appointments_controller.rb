@@ -10,7 +10,7 @@ class AppointmentsController < ApplicationController
         #@appointment.customer.user_id = current_user.id 
         #@appointment.category.user_id = current_user.id 
         #binding.pry 
-        if @appointment.save 
+        if @appointment.valid?
             redirect_to appointment_path(@appointment)
         else 
             render :new 

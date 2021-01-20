@@ -7,12 +7,11 @@ class CustomersController < ApplicationController
     end
 
     def create 
-        @customer = Customer.new(customer_params)
-        @customer.user_id = session[:user_id]
-        if @customer.save 
+        @customer = current_user.customers.build(customer_params)
+        if @customer.valid?
             redirect_to customer_path(@customer)
         else 
-            redirect_to new_customer_path 
+            render :new 
         end
     end
 
@@ -25,7 +24,7 @@ class CustomersController < ApplicationController
         if @customer.update(customer_params) 
             redirect_to customer_path(@customer)
         else 
-            redirect_to edit_customer_path(@customer) 
+            render :edit  
         end
     end
 

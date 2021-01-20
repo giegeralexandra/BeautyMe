@@ -6,6 +6,7 @@ class Category < ApplicationRecord
     validates :name, uniqueness: true 
     validates :name, {:length => { :maximum => 12}}
     validates :name, {:length => { :minimum => 2}}
+    #need validator for name with capitalization included 
 
 
 end

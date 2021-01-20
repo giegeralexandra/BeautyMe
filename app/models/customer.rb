@@ -8,6 +8,6 @@ class Customer < ApplicationRecord
     validates :email, uniqueness: true 
     validates :phone_number, {:length => { in: 9..10 }}
     validates :phone_number, numericality: { only_integer: true }
-    #some email validation
+    #some email validation, need to fix unique email on update/edit 
 
 end

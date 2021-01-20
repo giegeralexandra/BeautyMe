@@ -8,12 +8,11 @@ class CategoriesController < ApplicationController
     end
 
     def create 
-        @category = Category.new(category_params)
-        @category.user_id = session[:user_id]
+        @category = current_user.categories.new(category_params)
         if @category.save 
             redirect_to category_path(@category)
         else 
-            redirect_to new_category_path
+            render :new
         end
     end
 
@@ -26,7 +25,7 @@ class CategoriesController < ApplicationController
         if @category.update(category_params) 
             redirect_to category_path(@category)
         else 
-            redirect_to edit_category_path(@category)
+            render :edit 
         end
     end
 
@@ -40,7 +39,7 @@ class CategoriesController < ApplicationController
     private 
 
     def category_params 
-        params.require(:category).permit(:id, :name, :uder_id)
+        params.require(:category).permit( :name, :user_id)
     end
 
 
