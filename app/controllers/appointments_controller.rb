@@ -44,6 +44,10 @@ class AppointmentsController < ApplicationController
         redirect_to appointments_path 
     end
 
+    def upcoming 
+        @appointments = upcoming_appointments 
+        render :upcoming 
+    end
 
     private 
 

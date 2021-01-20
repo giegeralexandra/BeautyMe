@@ -1,12 +1,13 @@
-<h1>Upcoming Appointments</h1>
+<h1>Appointments</h1>
 
-<%= month_calendar(start_time: :start_date, end_time: :end_date) do |date| %>
+<%= month_calendar( events: @appointments) do |date, meetings| %>
     <%= date %>
+  
+    <% meetings.each do |meeting| %>
+      <div>
+        <%= link_to meeting.name, appointment_path(meeting) %> - <%= meeting.start_time_view %>
+      </div>
+    <% end %>
 <% end %>
 
-<%= current_user.appointments.each do |a| %>
-    <h3><%= link_to a.name.capitalize, appointment_path(a) %></h3>
-    <p>Date: <%= a.date_view %></p>
-    <p>Time: <%= a.start_time_view %></p>
-    <p>Duration: <%= a.duration %></p>
-<% end %>
+
