@@ -3,7 +3,7 @@
 <h3><%= @appointment.name.capitalize %></h3>
 <p>Time: <%= @appointment.start_time_view %></p>
 <p>Duration: <%= @appointment.duration %></p>
-<p>Price: <%= @appointment.price_view %></p>
+<p>Price: <%= number_to_currency(@appointment.price) %></p>
 <p>Customer: <%= @appointment.customer.full_name %></p>
 <p>Category: <%= @appointment.category.name.capitalize %></p>
 

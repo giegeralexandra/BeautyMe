@@ -5,15 +5,16 @@ class Customer < ApplicationRecord
     validates :first_name, :last_name, :email, :phone_number, presence: true 
     validates :first_name, :last_name, {:length => { :maximum => 12}}
     validates :first_name, :last_name, {:length => { :minimum => 2}}
-    validates :email, uniqueness: true 
-    validates :phone_number, {:length => { in: 9..10 }}
+    validates :email, uniqueness: { case_sensitive: false }
+    validates :phone_number, {:length => {is: 10}}
     validates :phone_number, numericality: { only_integer: true }
     #some email validation in regards to formatting
-    #need to fix unique email on update/edit 
 
     def full_name 
         first_name.capitalize + " " + last_name.capitalize
     end
+
+
 
     
 end

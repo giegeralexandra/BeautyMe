@@ -1,13 +1,13 @@
 <p><%= @customer.first_name %></p>
 <p><%= @customer.last_name %></p>
 <p><%= @customer.email %></p>
-<p><%= @customer.phone_number %></p>
+<p><%= number_to_phone(@customer.phone_number) %></p>
 
-<%= @customer.categories.uniq.each do|cat| %>
+<% @customer.categories.uniq.each do|cat| %>
    <p><%= cat.name %></p>
    <% end %>
 
-<%= @customer.appointments.each do |a| %>
+<% @customer.appointments.each do |a| %>
    <p><%= link_to a.name, appointment_path(a) %></p>
    <p><%= a.date_view + a.start_time_view %><br><br>
 <% end %>

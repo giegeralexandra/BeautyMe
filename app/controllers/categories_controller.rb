@@ -11,8 +11,9 @@ class CategoriesController < ApplicationController
     end
 
     def create 
-        @category = current_user.categories.new(category_params)
-        if @category.save 
+        @category = current_user.categories.build(category_params)
+        if @category.valid?
+            @category.save
             redirect_to category_path(@category)
         else 
             render :new
