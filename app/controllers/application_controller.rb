@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     helper_method :current_user, :logged_in?, :upcoming_appointments #gives access to methods in the views 
+    
 
     private 
 
@@ -15,14 +16,6 @@ class ApplicationController < ActionController::Base
         redirect_to root_path if !logged_in?
     end
 
-    #need to put this in helper probably 
-    def upcoming_appointments 
-        upcoming_appointments = []
-        current_user.appointments.each do |appt|
-             if (appt.date < (Time.zone.now + 7.days)) && (appt.date > Time.zone.now) 
-                upcoming_appointments << appt 
-             end
-        end
-    end
+    
 
 end

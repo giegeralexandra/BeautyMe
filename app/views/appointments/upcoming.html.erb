@@ -1,11 +1,9 @@
-<h1>Upcoming Appointments</h1>
-
-<%= week_calendar(events: @appointments) do |date, meetings| %>
+<%= week_calendar( events: @appointments) do |date, meetings| %>
     <%= date %>
   
     <% meetings.each do |meeting| %>
       <div>
-        <%= meeting.name %>
+        <%= link_to meeting.name, appointment_path(meeting) %> - <%= meeting.start_time_view %>
       </div>
     <% end %>
-  <% end %>
+<% end %>

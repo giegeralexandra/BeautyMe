@@ -2,21 +2,34 @@ class Appointment < ApplicationRecord
     belongs_to :customer
     belongs_to :user
     belongs_to :category 
-    accepts_nested_attributes_for :customer, reject_if: proc { |attr| attr['first_name'].blank? }
-    accepts_nested_attributes_for :category, reject_if: proc { |attr| attr['name'].blank? }
+    accepts_nested_attributes_for :customer
+    accepts_nested_attributes_for :category #reject_if: proc { |attr| attr['name'].blank? }
     validates :name, :start_time, :end_time, :price, :customer_id, :category_id, presence: true 
     #validates :price, numericality: { only_integer: true }
     validates :name, {:length => { :maximum => 20}}
     validates :name, {:length => { :minimum => 2}}
     validate :appointment_date_cannot_be_in_the_past, :appointment_end_time_cannot_be_before_start_time
+    scope :upcoming_appointments, -> {where("start_time > ? AND start_time < ?", Time.now, Time.now + 7.days)}
+
+    def customer_attributes=(attr)
+        if attr[:first_name] != ""
+            customer = Customer.find_or_create_by(first_name: attr[:first_name], last_name: attr[:last_name], email: attr[:email], phone_number: attr[:phone_number], user_id: self.user_id) 
+            self.customer_id = customer.id
+        end
+    end
+
+    def category_attributes=(attr)
+        if attr[:name] != ""
+            category = Category.find_or_create_by(name: attr[:name], user_id: self.user_id) 
+            self.category_id = category.id
+        end
+    end
 
     def appointment_date_cannot_be_in_the_past
         if start_time.present? && start_time < Date.today
           errors.add(:date, "can't be in the past")
         end
     end
-
-    
 
     def appointment_end_time_cannot_be_before_start_time
         if start_time.present? && end_time.present? && end_time < start_time 
@@ -44,25 +57,8 @@ class Appointment < ApplicationRecord
         "$" + price.to_s  
     end
 
-
-
-
-    #def customer_attributes=(attr)
-       # if attr[:first_name] != ""
-           # self.customer = self.user.customer.find_or_create_by(att) 
-       # end
-  #  end
-
-    #def category_attributes=(category_hashes)
-        #category_hashes.each do |i, cat_attr|
-            #if cat_attr[name].present?
-                #category = Category.find_or_create_by(name: cat_attr[:name])
-                #if !self.category.present?
-                 #   self.category.build(:category => category)
-                #end
-            #end
-        #end
-    #end
-    
+    #def self.costs_more_than(amount)
+        #where("price > ?", amount)
+      #end   
 
 end

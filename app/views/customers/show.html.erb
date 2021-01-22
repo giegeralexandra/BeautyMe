@@ -3,10 +3,15 @@
 <p><%= @customer.email %></p>
 <p><%= @customer.phone_number %></p>
 
+<%= @customer.categories.uniq.each do|cat| %>
+   <p><%= cat.name %></p>
+   <% end %>
+
 <%= @customer.appointments.each do |a| %>
    <p><%= link_to a.name, appointment_path(a) %></p>
    <p><%= a.date_view + a.start_time_view %><br><br>
 <% end %>
 
+<p><%= link_to "New Appointment", new_customer_appointment_path(@customer) %></p>
 <p><%= button_to "Delete Customer", customer_path(@customer), method: :delete %></p>
 <p><%= link_to "Edit Customer", edit_customer_path(@customer) %></p>

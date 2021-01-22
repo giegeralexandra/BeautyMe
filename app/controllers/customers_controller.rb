@@ -1,9 +1,12 @@
 class CustomersController < ApplicationController
+    before_action :user_can_only_view_own_information, only: [:show, :edit]
+    
     def index
+        @customers = current_user.customers.all 
     end
 
     def new
-        @customer = Customer.new 
+        @customer = Customer.new
     end
 
     def create 
@@ -40,34 +43,30 @@ class CustomersController < ApplicationController
         redirect_to customers_path 
     end
 
-    def appointments_index 
-        @customer = Customer.find(params[:id])
-        @appointments = @customer.appointments
-        render template: 'appointments/index'
-    end
+   #def appointments_index 
+    #    @customer = Customer.find(params[:id])
+    #    @appointments = @customer.appointments
+    #    render template: 'appointments/index'
+    #end
 
-    def appointments 
-        @customer = Customer.find(params[:id])
-        @appointment = Appointment.find(params[:appointment_id])
-        render template: 'appointments/show'
-    end
-
-    def category_index 
-        @customer = Customer.find(params[:id])
-        @category = @customer.categories
-        render template: 'categories/index'
-    end
-
-    def categories 
-        @customer = Customer.find(params[:id])
-        @category = Category.find(params[:category_id])
-        render template: 'category/show'
-    end
+    #def appointments 
+    #    @customer = Customer.find(params[:id])
+    #    @appointment = Appointment.find(params[:appointment_id])
+     #   render template: 'appointments/show'
+   # end
 
     private 
 
     def customer_params 
         params.require(:customer).permit(:id, :first_name, :last_name, :email, :phone_number)
+    end
+
+    def user_can_only_view_own_information
+        customer = Customer.find_by(params[:id])
+        unless customer.user_id == current_user.id 
+            flash[:error] = "Access Denied. You must be owner of customer to view."
+            redirect_to customers_path 
+        end
     end
 
 end

@@ -1,5 +1,7 @@
 <h1>Appointments</h1>
 
+<%= flash[:error] %>
+
 <%= month_calendar( events: @appointments) do |date, meetings| %>
     <%= date %>
   
@@ -9,5 +11,7 @@
       </div>
     <% end %>
 <% end %>
+
+
 
 

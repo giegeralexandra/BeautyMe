@@ -11,5 +11,6 @@
     <p><%= link_to c.full_name, customer_path(c) %></p>
 <% end %>
 
+<p><%= link_to "New Appointment", new_category_appointment_path(@category) %></p>
 <p><%= button_to "Delete Category", category_path(@category), method: :delete %></p>
 <p><%= link_to "Edit Category", edit_category_path(@category) %></p>
