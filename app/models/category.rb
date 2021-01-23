@@ -5,11 +5,11 @@ class Category < ApplicationRecord
 
     validates :name, presence: true 
     validates :name, {:length => { :maximum => 12, :minimum => 2}}
-    validate :uniqueness_of_category_for_user_only 
+    validate :uniqueness_of_category_per_user 
 
     #validations 
     
-    def uniqueness_of_category_for_user_only
+    def uniqueness_of_category_per_user
         current_user = User.find_by(id: self.user_id)
         current_user.categories.each do |category|
             if self.name.capitalize == category.name.capitalize
