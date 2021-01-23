@@ -9,8 +9,8 @@
 <br>
 
 <h2>Customers</h2>
-<% @category.customers.uniq.each do |category| %> 
-    <p><%= link_to category_name(category), category_customer_path(@category, category) %></p>
+<% @category.customers.uniq.each do |customer| %> 
+    <p><%= link_to customer_name(customer), category_customer_path(@category, customer) %></p>
 <% end %>
 <br>
 

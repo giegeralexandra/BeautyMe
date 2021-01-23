@@ -9,4 +9,8 @@ class Customer < ApplicationRecord
     validates :phone_number, {:length => {is: 10}}
     validates :phone_number, numericality: { only_integer: true }
     
+    def full_name 
+        first_name.capitalize + " " + last_name.capitalize
+    end 
+
 end

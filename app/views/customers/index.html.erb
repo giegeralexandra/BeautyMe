@@ -2,6 +2,6 @@
 <br>
 
 <%= flash[:error] %>
-<% current_user.customers.each do |customer| %>
+<% current_user.customers.order(:first_name).each do |customer| %>
     <p><%= link_to customer_name(customer), customer_path(customer) %></p>
 <% end %>

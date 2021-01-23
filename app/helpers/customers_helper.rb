@@ -8,4 +8,8 @@ module CustomersHelper
         number_to_phone(customer.phone_number)
     end
 
+    def display_customer(appointment)
+        link_to customer_name(appointment.customer), customer_path(appointment.customer)   
+    end
+
 end

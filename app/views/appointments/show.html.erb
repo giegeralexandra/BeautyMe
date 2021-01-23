@@ -3,8 +3,8 @@
 <p>Time: <%= time @appointment %></p>
 <p>Duration: <%= duration @appointment %></p>
 <p>Price: <%= price @appointment %></p>
-<p>Customer: <%= link_to @appointment.customer.full_name, customer_path(@appointment.customer) %></p>
-<p>Category: <%= link_to @appointment.category.name.capitalize, category_path(@appointment.category) %></p>
+<p>Customer: <%= display_customer @appointment %></p>
+<p>Category: <%= display_category @appointment %></p>
 
 <p><%= link_to "Edit Appointment", edit_appointment_path(@appointment) %></p>
 <p><%= button_to "Delete Appointment", appointment_path(@appointment), method: :delete %></p>
