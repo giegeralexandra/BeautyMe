@@ -1,6 +1,6 @@
 <h1><%= @appointment.name.capitalize %></h1>
-<p>Date: <%= @appointment.date_view %></p>
-<p>Time: <%= @appointment.start_time_view %></p>
+<p>Date: <%= appointment_date_view(@appointment.start_time) %></p>
+<p>Time: <%= appointment_time_view(@appointment.start_time) %></p>
 <p>Duration: <%= @appointment.duration %></p>
 <p>Price: <%= number_to_currency(@appointment.price) %></p>
 <p>Customer: <%= link_to @appointment.customer.full_name, customer_path(@appointment.customer) %></p>

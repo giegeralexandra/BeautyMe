@@ -6,7 +6,7 @@
   
     <% meetings.each do |meeting| %>
       <div>
-        <%= link_to meeting.name, appointment_path(meeting) %> - <%= meeting.start_time_view %>
+        <%= link_to meeting.name, appointment_path(meeting) %> - <%= appointment_time_view(meeting.start_time) %>
       </div>
     <% end %>
 <% end %>
