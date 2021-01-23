@@ -19,8 +19,7 @@ class AppointmentsController < ApplicationController
 
     def create 
         @appointment = current_user.appointments.build(appointment_params)
-        if @appointment.valid?
-            @appointment.save 
+        if @appointment.save
             redirect_to appointment_path(@appointment)
         else 
             render :new 

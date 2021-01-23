@@ -12,8 +12,7 @@ class CategoriesController < ApplicationController
 
     def create 
         @category = current_user.categories.build(category_params)
-        if @category.valid?
-            @category.save
+        if @category.save
             redirect_to category_path(@category)
         else 
             render :new
@@ -60,7 +59,7 @@ class CategoriesController < ApplicationController
     end
 
     private 
-    
+
     def assign_category
         @category = Category.find_by(id: params[:id])
     end
