@@ -67,7 +67,7 @@ class AppointmentsController < ApplicationController
     end
 
     def user_can_only_view_own_information
-        appointment = Appointment.find_by(params[:id])
+        appointment = Appointment.find_by(id: params[:id])
         unless appointment.user_id == current_user.id 
             flash[:error] = "Cannot access appointment. You must be owner of appointment to access."
             redirect_to appointments_path 

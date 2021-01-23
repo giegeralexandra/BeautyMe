@@ -11,8 +11,11 @@
 
   <body>
 
-    <div>
+
+  <topnav>
+  <div>
       <% if logged_in? %> 
+      
       <%= link_to "Home", root_path %> |  
       <%= link_to "Upcoming Appointments", '/appointments/upcoming' %> |  
       <%= link_to "All Appointments", appointments_path %> |  
@@ -28,6 +31,9 @@
       <%= link_to "Log in with Facebook!", '/auth/facebook' %>
       <% end %> 
     </div>
+
+    </topnav>
+    
     <%= yield %>
   </body>
 </html>

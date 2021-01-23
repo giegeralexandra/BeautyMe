@@ -24,7 +24,7 @@
     <br>
     <h2>Choose or Create New Customer</h2>
     <%= f.label :customer %> 
-    <%= f.collection_select(:customer_id, Customer.all, :id, :full_name, {include_blank: 'Select a Customer'}) %>
+    <%= f.collection_select(:customer_id, current_user.customers.all, :id, :full_name, {include_blank: 'Select a Customer'}) %>
     <br>
     <br>
     <%= f.fields_for :customer, Customer.new do |c| %>
@@ -41,7 +41,7 @@
     <br>
     <h2>Choose or Create New Category</h2>
     <%= f.label :category %> 
-    <%= f.collection_select(:category_id, Category.all, :id, :name, {include_blank: 'Select a Category'}) %>
+    <%= f.collection_select(:category_id, current_user.categories.all, :id, :name, {include_blank: 'Select a Category'}) %>
     <br>
     <br>
     <%= f.fields_for :category, Category.new do |c| %>

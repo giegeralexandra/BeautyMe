@@ -16,10 +16,12 @@ resources :appointments
 
 resources :categories, only: [:show] do 
   resources :appointments, only: [:show, :new, :index]
+  resources :customers, only: [:show, :index]
 end
 
 resources :customers, only: [:show] do 
   resources :appointments, only: [:show, :new, :index]
+  resources :categories, only: [:show, :index]
 end
 
 

@@ -1,3 +1,6 @@
+<h1>Customers</h1>
+<br>
+
 <%= flash[:error] %>
 <% current_user.customers.each do |c| %>
     <p><%= link_to c.full_name, customer_path(c) %></p>

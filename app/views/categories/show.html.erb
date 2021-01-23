@@ -1,16 +1,19 @@
 <h1><%= @category.name %></h1>
+<br>
 
-<h3>Appointments</h3>
+<h2>Appointments</h2>
 <% @category.appointments.each do |a| %>
-    <p><%= link_to a.name.capitalize, appointment_path(a) %></p>
-    <p><%= a.date_view + a.start_time_view %></p>
+    <p><%= link_to a.name.capitalize, category_appointment_path(a) %></p>
+    <p><%= a.date_view + " " + a.start_time_view %></p>
 <% end %>
+<br>
 
-<h3>Customers</h3>
+<h2>Customers</h2>
 <% @category.customers.uniq.each do |c| %> 
-    <p><%= link_to c.full_name, customer_path(c) %></p>
+    <p><%= link_to c.full_name, category_customer_path(c) %></p>
 <% end %>
+<br>
 
-<p><%= link_to "New Appointment", new_category_appointment_path(@category) %></p>
+<p><%= button_to "New Appointment", new_category_appointment_path(@category) %></p>
+<p><%= button_to "Edit Category", edit_category_path(@category) %></p>
 <p><%= button_to "Delete Category", category_path(@category), method: :delete %></p>
-<p><%= link_to "Edit Category", edit_category_path(@category) %></p>

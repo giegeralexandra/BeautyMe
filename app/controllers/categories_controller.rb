@@ -55,6 +55,18 @@ class CategoriesController < ApplicationController
         render template: 'appointments/show'
     end
 
+    def customers_index 
+        @category = Category.find(params[:id])
+        @customer = @category.customers
+        render template: 'customers/index'
+    end
+
+    def customers 
+        @category = Category.find(params[:id])
+        @customer = Customer.find(params[:customer_id])
+        render template: 'customers/show'
+    end
+
     private 
 
     def category_params 
@@ -62,7 +74,8 @@ class CategoriesController < ApplicationController
     end
 
     def user_can_only_view_own_information
-        category = Category.find_by(params[:id])
+        category = Category.find_by(id: params[:id])
+        #binding.pry
         unless category.user_id == current_user.id 
             flash[:error] = "Cannot access category. You must be owner of category to access."
             redirect_to categories_path 

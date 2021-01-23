@@ -1,17 +1,18 @@
-<p><%= @customer.first_name %></p>
-<p><%= @customer.last_name %></p>
-<p><%= @customer.email %></p>
-<p><%= number_to_phone(@customer.phone_number) %></p>
-
+<h1><%= @customer.full_name %></h1>
+<p>Email: <%= @customer.email %></p>
+<p>Phone: <%= number_to_phone(@customer.phone_number) %></p>
+<br>
+<h2>Categories:</h2>
 <% @customer.categories.uniq.each do|cat| %>
-   <p><%= cat.name %></p>
+   <p><%= link_to cat.name, customer_category_path(cat) %></p>
    <% end %>
-
-<% @customer.appointments.each do |a| %>
-   <p><%= link_to a.name, appointment_path(a) %></p>
+<br>
+<h2>Appointments:</h2>
+<% @customer.appointments.future_appointments.each do |a| %>
+   <p><%= link_to a.name, customer_appointment_path(a) %></p>
    <p><%= a.date_view + a.start_time_view %><br><br>
 <% end %>
 
-<p><%= link_to "New Appointment", new_customer_appointment_path(@customer) %></p>
+<p><%= button_to "New Appointment", new_customer_appointment_path(@customer) %></p>
+<p><%= button_to "Edit Customer", edit_customer_path(@customer) %></p>
 <p><%= button_to "Delete Customer", customer_path(@customer), method: :delete %></p>
-<p><%= link_to "Edit Customer", edit_customer_path(@customer) %></p>

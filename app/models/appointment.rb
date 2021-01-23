@@ -9,6 +9,43 @@ class Appointment < ApplicationRecord
     validates :name, {:length => { :minimum => 2}}
     validate :appointment_date_cannot_be_in_the_past, :appointment_end_time_cannot_be_before_start_time
     scope :upcoming_appointments, -> {where("start_time > ? AND start_time < ?", Time.now, Time.now + 7.days)}
+    scope :future_appointments, -> {where("start_time > ?", Time.now ).order('start_time asc')}
+    validate :no_appointments_overlap
+
+    #scope :overlapping, ->(start_time, end_time) do
+    #where "((start_time <= ?) and (end_time >= ?))", start_time, end_time
+    #end
+
+    def no_appointments_overlap
+        Appointment.all.each do |appointment|
+            if appointment.start_time < self.end_time && self.start_time < appointment.end_time
+                errors.add(:start_time, "conflicts with other appointments")
+            end
+        end
+    end
+
+
+    def start_time_view
+        start_time.strftime('%I:%M%P')
+    end
+
+
+    #def no_appointments_overlap
+       # if (Appointment.overlapping(start_time, end_time).any?)
+          #  errors.add(:start_time, 'it overlaps another reservation')
+       # end
+  #  end
+
+
+    #def appointments_must_not_overlap
+       # return if self
+                  #  .class
+                   # .where.not(id: id)
+                   # .where('start_date < ? AND end_date > ?', end_date, start_date)
+                   # .none?
+      
+       # errors.add(:base, 'Overlapping reservation exists')
+   # end
 
     def customer_attributes=(attr)
         #check to see if it will work if any other fields are blank
@@ -37,15 +74,7 @@ class Appointment < ApplicationRecord
         end
     end
 
-    #def appointments_must_not_overlap
-       # return if self
-                  #  .class
-                   # .where.not(id: id)
-                   # .where('start_date < ? AND end_date > ?', end_date, start_date)
-                   # .none?
-      
-       # errors.add(:base, 'Overlapping reservation exists')
-   # end
+  
 
     def duration
         time_diff = (end_time - start_time)
@@ -54,10 +83,7 @@ class Appointment < ApplicationRecord
         hours.to_s + " hours " + minutes.to_s + " minutes"
     end
 
-    def start_time_view
-        start_time.strftime('%I:%M %P')
-    end
-
+    
     #def end_time_view
         #"end_time_view"
     #end
