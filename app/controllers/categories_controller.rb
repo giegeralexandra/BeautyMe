@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
     before_action :user_can_only_view_own_information, only: [:show, :edit]
-    before_action :assign_category, only: [:edit, :update, :show, :destroy]
+    before_action :assign_category, only: [:edit, :update, :show, :destroy, :appointments_index, :appointments, :customers_index, :customers]
 
     def index
         @categories = current_user.categories.all 
@@ -8,7 +8,6 @@ class CategoriesController < ApplicationController
 
     def new
         @category = Category.new
-        render :new 
     end
 
     def create 
@@ -22,11 +21,9 @@ class CategoriesController < ApplicationController
     end
 
     def edit 
-        #@category = Category.find_by(id: params[:id])
     end
 
     def update 
-        #@category = Category.find_by(id: params[:id])
         if @category.update(category_params) 
             redirect_to category_path(@category)
         else 
@@ -35,40 +32,35 @@ class CategoriesController < ApplicationController
     end
 
     def show 
-        #@category = Category.find_by(id: params[:id])
     end
 
     def destroy 
-        #@category = Category.find_by(id: params[:id])
         @category.destroy
         redirect_to categories_path
     end
 
     def appointments_index 
-        @category = Category.find(params[:id])
         @appointment = @category.appointments 
         render template: 'appointments/index'
     end
 
     def appointments 
-        @category = Category.find(params[:id])
         @appointment= Appointment.find(params[:appointment_id])
         render template: 'appointments/show'
     end
 
     def customers_index 
-        @category = Category.find(params[:id])
         @customer = @category.customers
         render template: 'customers/index'
     end
 
     def customers 
-        @category = Category.find(params[:id])
         @customer = Customer.find(params[:customer_id])
         render template: 'customers/show'
     end
 
     private 
+    
     def assign_category
         @category = Category.find_by(id: params[:id])
     end
@@ -80,7 +72,7 @@ class CategoriesController < ApplicationController
     def user_can_only_view_own_information
         category = Category.find_by(id: params[:id])
         unless category.user_id == current_user.id 
-            flash[:error] = "Cannot access category. You must be owner of category to access."
+            flash[:error] = "Access Denied. User must be owner of category to view."
             redirect_to categories_path 
         end
     end

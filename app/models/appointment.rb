@@ -53,8 +53,10 @@ class Appointment < ApplicationRecord
 
     def no_appointments_overlap
         Appointment.all.each do |appointment|
-            if appointment.start_time < self.end_time && self.start_time < appointment.end_time
-                errors.add(:start_time, "conflicts with other appointments")
+            if appointment != self 
+                if appointment.start_time < self.end_time && self.start_time < appointment.end_time
+                    errors.add(:start_time, "conflicts with other appointments")
+                end
             end
         end
     end
