@@ -56,13 +56,13 @@ class CustomersController < ApplicationController
     end
 
     def categories_index 
-        @customer = Customer.find(params[:id])
+        @customer = Customer.find(params[:customer_id])
         @categories = @customer.categories
         render template: 'categories/index'
     end
 
     def categories
-        @customer = Customer.find(params[:id])
+        @customer = Customer.find(params[:customer_id])
         @category = Category.find(params[:category_id])
         render template: 'categories/show'
     end

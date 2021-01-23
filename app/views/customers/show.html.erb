@@ -5,12 +5,12 @@
 
 <h2>Categories:</h2>
 <% @customer.categories.uniq.each do|cat| %>
-   <p><%= link_to cat.name, customer_category_path(cat) %></p>
+   <p><%= link_to cat.name, customer_category_path(@customer, cat) %></p>
    <% end %>
 <br>
 <h2>Appointments:</h2>
 <% @customer.appointments.future_appointments.each do |a| %>
-   <p><%= link_to a.name, customer_appointment_path(a) %></p>
+   <p><%= link_to a.name, customer_appointment_path(@customer, a) %></p>
    <p><%= appointment_date_time_view(a.start_time) %><br><br>
 <% end %>
 

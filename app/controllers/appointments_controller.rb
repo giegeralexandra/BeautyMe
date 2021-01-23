@@ -28,11 +28,9 @@ class AppointmentsController < ApplicationController
     end
 
     def edit 
-        #@appointment = Appointment.find_by(id: params[:id])
     end
 
     def update
-        #@appointment = Appointment.find_by(id: params[:id])
         if @appointment.valid?
             @appointment = current_user.appointments.update(appointment_params)
             redirect_to appointment_path(@appointment)
@@ -42,11 +40,9 @@ class AppointmentsController < ApplicationController
     end
 
     def show 
-        #@appointment = Appointment.find_by(id: params[:id])
     end
 
     def destroy
-        #@appointment = Appointment.find_by(id: params[:id])
         @appointment.destroy 
         redirect_to appointments_path 
     end
@@ -71,8 +67,7 @@ class AppointmentsController < ApplicationController
     end
 
     def assign_appointment 
-        @appointment = Appointment.find_by(id: params[:id])
+       @appointment = Appointment.find_by(id: params[:id])
     end
-
 
 end
