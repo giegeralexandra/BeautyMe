@@ -1,16 +1,16 @@
-<h1><%= @category.name %></h1>
+<h1><%= category_name @category %></h1>
 <br>
 
 <h2>Appointments</h2>
-<% @category.appointments.each do |a| %>
-    <p><%= link_to a.name.capitalize, category_appointment_path(@category, a) %></p>
-    <p><%= appointment_date_time_view(a.start_time) %></p>
+<% @category.appointments.each do |appointment| %>
+    <p><%= link_to appointment_name(appointment), category_appointment_path(@category, appointment) %></p>
+    <p><%= date_time appointment %></p>
 <% end %>
 <br>
 
 <h2>Customers</h2>
-<% @category.customers.uniq.each do |c| %> 
-    <p><%= link_to c.full_name, category_customer_path(@category, c) %></p>
+<% @category.customers.uniq.each do |category| %> 
+    <p><%= link_to category_name(category), category_customer_path(@category, category) %></p>
 <% end %>
 <br>
 

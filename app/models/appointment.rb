@@ -11,13 +11,6 @@ class Appointment < ApplicationRecord
     validate :appointment_date_cannot_be_in_the_past, :appointment_end_time_cannot_be_before_start_time, :no_appointments_overlap
     
     scope :future_appointments, -> {where("start_time > ?", Time.now ).order('start_time asc')}
-    
-    def duration
-        time_diff = (end_time - start_time)
-        hours = (time_diff / 1.hour).to_i 
-        minutes = ((time_diff / 1.minute) - (hours*60)).to_i
-        hours.to_s + " hours " + minutes.to_s + " minutes"
-    end
 
     #nested form methods 
 

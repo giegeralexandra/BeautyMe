@@ -30,8 +30,7 @@ class AppointmentsController < ApplicationController
     end
 
     def update
-        if @appointment.valid?
-            @appointment = current_user.appointments.update(appointment_params)
+        if @appointment = current_user.appointments.update(appointment_params)
             redirect_to appointment_path(@appointment)
         else 
             render :edit 
