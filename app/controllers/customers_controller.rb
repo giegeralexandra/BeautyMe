@@ -7,13 +7,13 @@ class CustomersController < ApplicationController
     end
 
     def new
-        @customer = Customer.new
+       @customer = Customer.new
     end
 
     def create 
-        @customer = current_user.customers.build(customer_params)
-        if @customer.save   
-            redirect_to customer_path(@customer)
+        customer = current_user.customers.build(customer_params)
+        if customer.save   
+            redirect_to customer_path(customer)
         else 
             render :new 
         end

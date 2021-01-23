@@ -17,6 +17,7 @@
       <% if logged_in? %> 
       
       <%= link_to "Home", root_path %> |  
+      <%= link_to "Profile", user_path(current_user) %> |  
       <%= link_to "Upcoming Appointments", '/appointments/upcoming' %> |  
       <%= link_to "All Appointments", appointments_path %> |  
       <%= link_to "New Appointment", new_appointment_path %>  |  
@@ -33,7 +34,7 @@
     </div>
 
     </topnav>
-    
+
     <%= yield %>
   </body>
 </html>

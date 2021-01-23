@@ -1,0 +1,5 @@
+<h1><%= @user.full_name %></h1>
+<p>Email: <%= @user.email %></p>
+
+<p><%= link_to "Edit Account", edit_user_path(@user) %></p>
+<p><%= button_to "Delete Account", '/users/:id', method: :delete %></p>

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :assign_user, only: [:show, :edit, :update, :destroy]
 
     def new 
         @user = User.new 
@@ -14,24 +15,33 @@ class UsersController < ApplicationController
         end
     end
 
-    def show 
-        redirect_if_not_logged_in
-        @user = User.find_by(id: params[:id])
+    def show
     end
 
     def edit 
     end
 
     def update
+        if @user.update(user_params)
+            redirect_to user_path(@user)
+        else 
+            render :edit
+        end
     end
 
-    def delete
+    def destroy
+        @user.destory 
+        redirect_to root_path 
     end
 
     private 
 
     def user_params
-        params.require(:user).permit(:id, :first_name, :last_name, :email, :password)
+        params.require(:user).permit(:id, :first_name, :last_name, :email, :password, :password_confirmation)
+    end
+
+    def assign_user 
+        @user = current_user 
     end
 
 

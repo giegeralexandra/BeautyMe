@@ -10,7 +10,6 @@ class Appointment < ApplicationRecord
     validates :name, {:length => { :maximum => 20, :minimum => 2}}
     validate :appointment_date_cannot_be_in_the_past, :appointment_end_time_cannot_be_before_start_time, :no_appointments_overlap
     
-    scope :upcoming_appointments, -> {where("start_time > ? AND start_time < ?", Time.now, Time.now + 7.days)}
     scope :future_appointments, -> {where("start_time > ?", Time.now ).order('start_time asc')}
     
     def duration

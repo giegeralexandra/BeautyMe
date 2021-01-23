@@ -1,10 +1,10 @@
 class AppointmentsController < ApplicationController
     before_action :redirect_if_not_logged_in 
     before_action :user_can_only_view_own_information, only: [:show, :edit]
+    before_action :assign_appointments
     before_action :assign_appointment, only: [:edit, :update, :show, :destroy]
 
     def index
-        @appointments = current_user.appointments 
     end
 
     def new 
@@ -18,9 +18,9 @@ class AppointmentsController < ApplicationController
     end
 
     def create 
-        @appointment = current_user.appointments.build(appointment_params)
-        if @appointment.save
-            redirect_to appointment_path(@appointment)
+        appointment = current_user.appointments.build(appointment_params)
+        if appointment.save
+            redirect_to appointment_path(appointment)
         else 
             render :new 
         end       
@@ -47,8 +47,6 @@ class AppointmentsController < ApplicationController
     end
 
     def upcoming 
-        @appointments = Appointment.upcoming_appointments
-        render :upcoming 
     end
 
     private 
@@ -68,5 +66,9 @@ class AppointmentsController < ApplicationController
     def assign_appointment 
        @appointment = Appointment.find_by(id: params[:id])
     end
+
+    def assign_appointments 
+        @appointments = current_user.appointments 
+     end
 
 end
