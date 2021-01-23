@@ -7,4 +7,4 @@
 <p>Category: <%= link_to @appointment.category.name.capitalize, category_path(@appointment.category) %></p>
 
 <p><%= button_to "Delete Appointment", appointment_path(@appointment), method: :delete %></p>
-<p><%= button_to "Edit Appointment", edit_appointment_path(@appointment) %></p>
+<p><%= link_to "Edit Appointment", edit_appointment_path(@appointment) %></p>

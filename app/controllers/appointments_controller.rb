@@ -1,9 +1,10 @@
 class AppointmentsController < ApplicationController
     before_action :redirect_if_not_logged_in 
     before_action :user_can_only_view_own_information, only: [:show, :edit]
+    before_action :assign_appointment, only: [:edit, :update, :show, :destroy]
 
     def index
-            @appointments = current_user.appointments 
+        @appointments = current_user.appointments 
     end
 
     def new 
@@ -17,13 +18,7 @@ class AppointmentsController < ApplicationController
     end
 
     def create 
-        #binding.pry
         @appointment = current_user.appointments.build(appointment_params)
-        #@appointment.customer = 
-        #@appointment.customer = Customer.new(appointment_params[:customer_attributes])
-        #@appointment.customer.build(appointment_params[:customer_attributes])
-        #@appointment.category.build(appointment_params[:category_attributes])
-        #binding.pry 
         if @appointment.valid?
             @appointment.save 
             redirect_to appointment_path(@appointment)
@@ -33,11 +28,13 @@ class AppointmentsController < ApplicationController
     end
 
     def edit 
-        @appointment = current_user.appointments.find_by(id: params[:id])
+        #@appointment = Appointment.find_by(id: params[:id])
     end
 
     def update
-        if @appointment = current_user.appointments.update(appointment_params)
+        #@appointment = Appointment.find_by(id: params[:id])
+        if @appointment.valid?
+            @appointment = current_user.appointments.update(appointment_params)
             redirect_to appointment_path(@appointment)
         else 
             render :edit 
@@ -45,17 +42,16 @@ class AppointmentsController < ApplicationController
     end
 
     def show 
-        @appointment = current_user.appointments.find_by(id: params[:id])
+        #@appointment = Appointment.find_by(id: params[:id])
     end
 
     def destroy
-        @appointment = current_user.appointments.find_by(id: params[:id])
+        #@appointment = Appointment.find_by(id: params[:id])
         @appointment.destroy 
         redirect_to appointments_path 
     end
 
     def upcoming 
-        #fix 
         @appointments = Appointment.upcoming_appointments
         render :upcoming 
     end
@@ -69,9 +65,13 @@ class AppointmentsController < ApplicationController
     def user_can_only_view_own_information
         appointment = Appointment.find_by(id: params[:id])
         unless appointment.user_id == current_user.id 
-            flash[:error] = "Cannot access appointment. You must be owner of appointment to access."
+            flash[:error] = "Access Denied. User must be owner of appointment to view."
             redirect_to appointments_path 
         end
+    end
+
+    def assign_appointment 
+        @appointment = Appointment.find_by(id: params[:id])
     end
 
 
