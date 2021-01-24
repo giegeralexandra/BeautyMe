@@ -2,7 +2,7 @@
 
 <%= flash[:error] %>
 
-<%= month_calendar( events: @appointments) do |date, meetings| %>
+<div class = "calendar" ><%= month_calendar( events: @appointments) do |date, meetings| %>
     <%= date %>
   
     <% meetings.each do |meeting| %>
@@ -11,6 +11,7 @@
       </div>
     <% end %>
 <% end %>
+</div>
 
 
 
