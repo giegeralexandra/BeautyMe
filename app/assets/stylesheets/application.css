@@ -15,26 +15,107 @@
  *= require simple_calendar
  */
 
- 
-/* Style the topnav links */
-  /* .topnav.div a {
-    position: absolute;
-width: 85px;
-height: 29px;
-left: 864px;
-top: 22px;
-
-font-family: Montserrat;
-font-style: normal;
-font-weight: 500;
-font-size: 24px;
-line-height: 29px;
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: -0.015em;
-color: #F2F2F2;
+ body {
+    background: #eea6d9;
   }
+
+  .logo {
+    background: url("logo.jpg");
+    padding: 0px;
+    margin: 0px;
+    height: 222px;
+  }
+
+  h1 {
+    color: navy;
+
+  }
+
+  h2 {
+    color: navy;
+    margin-left: 20px;
+  }
+
+  h3 {
+    color: navy;
+    margin-left: 20px;
+  }
+
+  p {
+    color: white;
+  }
+
+
+  div#homepage a{
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.015em;
+
+    color: #FFFFFF;
+    background: #333333;
+    border-radius: 6px;
+
+    width: 130px;
+    height: 40px;
+
+
+    display: inline-block; 
+    align: center;
+
+
+  }
+
+  div#homepage {
+    display: inline-block; 
+    align-items: center;
+  }
+
+  /* Rectangle 3 */
+
+html {
+  background-image: url("background.jpg");
+  background-size: 100%;
+}
+
+
+Primary Button
+*/
+
+
+
+
+
+/* Rectangle 2 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Gray 1 */
+background: #333333;
+border-radius: 6px;
+
+
+/* Login with Facebook */
+
+position: absolute;
+left: 27.69%;
+right: 26.92%;
+top: 27.5%;
+bottom: 27.5%;
+
+
+
+
  
 
   

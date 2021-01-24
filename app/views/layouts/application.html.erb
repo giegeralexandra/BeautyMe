@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield :title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <div class="logo">
+
+    </div>
+    <br>
+    <br>
+   <nav>
+      <% if logged_in? %> 
+      
+      <%= link_to "Home", root_path %> 
+      <%= link_to "Profile", user_path(current_user) %>
+      <%= link_to "Upcoming Appointments", '/appointments/upcoming' %>  
+      <%= link_to "All Appointments", appointments_path %>
+      <%= link_to "New Appointment", new_appointment_path %>
+      <%= link_to "Customers", customers_path %>
+      <%= link_to "New Customer", new_customer_path %>
+      <%= link_to "Categories", categories_path %>
+      <%= link_to "New Category", new_category_path %> 
+      <%= link_to "Logout", logout_path, method: "delete" %>
+      <% else %>
+      <div id= "homepage">
+      <%= link_to "Sign Up", signup_path %>
+      <%= link_to "Login", login_path %>
+      <%= link_to "Login Facebook", '/auth/facebook' %>
+      <% end %> 
+      </div>
+  </nav>
+  <br>
+  <br>
+  
   </head>
 
   <body>
+  
 
-
-  <topnav>
-  <div>
-      <% if logged_in? %> 
-      
-      <%= link_to "Home", root_path %> |  
-      <%= link_to "Profile", user_path(current_user) %> |  
-      <%= link_to "Upcoming Appointments", '/appointments/upcoming' %> |  
-      <%= link_to "All Appointments", appointments_path %> |  
-      <%= link_to "New Appointment", new_appointment_path %>  |  
-      <%= link_to "Customers", customers_path %> |  
-      <%= link_to "New Customer", new_customer_path %> |  
-      <%= link_to "Categories", categories_path %> |  
-      <%= link_to "New Category", new_category_path %> |  
-      <%= link_to "Logout", logout_path, method: "delete" %>
-      <% else %>
-      <%= link_to "Sign Up", signup_path %>  |  
-      <%= link_to "Login", login_path %> |  
-      <%= link_to "Log in with Facebook!", '/auth/facebook' %>
-      <% end %> 
-    </div>
-
-    </topnav>
 
     <%= yield %>
   </body>
