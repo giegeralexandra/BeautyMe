@@ -19,6 +19,11 @@
   src: url('Montserrat-Regular.ttf');
   }
 
+  html {
+    background-image: url("background.jpg") ;
+    background-size: 130%;
+  }
+
  body {
     background: #eea6d9;
     font-family: Montserrat;
@@ -71,11 +76,7 @@
     width: 130px;
     height: 40px;
 
-
     display: inline-block; 
-
-
-
   }
 
 
@@ -83,15 +84,57 @@
     text-align: center;
     margin-right: auto; 
     margin-right: auto; 
-    
   }
 
+  nav {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  nav a {
+
+  height: 29px; 
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 29px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.015em;
+  display: inline-block;
+  color: #F2F2F2;
+  }
+
+  
+
+  /* Features */
+
+position: absolute;
+width: 104px;
+height: 29px;
+left: 694px;
+top: 22px;
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.015em;
+
+/* Gray 6 */
+color: #F2F2F2;
 
 
-html {
-  background-image: url("background.jpg") ;
-  background-size: 130%;
-}
+
 
   table {
     -webkit-border-horizontal-spacing: 0px;
