@@ -18,9 +18,9 @@ class AppointmentsController < ApplicationController
     end
 
     def create 
-        appointment = current_user.appointments.build(appointment_params)
-        if appointment.save
-            redirect_to appointment_path(appointment)
+        @appointment = current_user.appointments.build(appointment_params)
+        if @appointment.save
+            redirect_to appointment_path(@appointment)
         else 
             render :new 
         end       
@@ -30,7 +30,7 @@ class AppointmentsController < ApplicationController
     end
 
     def update
-        if @appointment = current_user.appointments.update(appointment_params)
+        if @appointment.update(appointment_params)
             redirect_to appointment_path(@appointment)
         else 
             render :edit 
@@ -56,8 +56,14 @@ class AppointmentsController < ApplicationController
 
     def user_can_only_view_own_information
         appointment = Appointment.find_by(id: params[:id])
-        unless appointment.user_id == current_user.id 
-            flash[:error] = "Access Denied. User must be owner of appointment to view."
+        if !!appointment 
+            unless appointment.user_id == current_user.id
+                flash[:error] = "Access Denied. User must be owner of appointment to view."
+                redirect_to appointments_path 
+            end
+        end
+        if !appointment
+            flash[:error] = "Appointment does not exist."
             redirect_to appointments_path 
         end
     end
@@ -68,6 +74,6 @@ class AppointmentsController < ApplicationController
 
     def assign_appointments 
         @appointments = current_user.appointments 
-     end
+    end
 
 end

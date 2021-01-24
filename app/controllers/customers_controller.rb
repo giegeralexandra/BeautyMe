@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+    before_action :redirect_if_not_logged_in 
     before_action :user_can_only_view_own_information, only: [:show, :edit]
     before_action :assign_customer, only: [:show, :edit, :update, :destroy, :categories_index, :categories, :appointments_index, :appointments]
     
@@ -11,9 +12,9 @@ class CustomersController < ApplicationController
     end
 
     def create 
-        customer = current_user.customers.build(customer_params)
-        if customer.save   
-            redirect_to customer_path(customer)
+        @customer = current_user.customers.build(customer_params)
+        if @customer.save   
+            redirect_to customer_path(@customer)
         else 
             render :new 
         end
@@ -35,6 +36,7 @@ class CustomersController < ApplicationController
 
 
     def destroy 
+        @customer.appointments.clear
         @customer.destroy 
         redirect_to customers_path 
     end
@@ -67,8 +69,14 @@ class CustomersController < ApplicationController
 
     def user_can_only_view_own_information
         customer = Customer.find_by(id: params[:id])
-        unless customer.user_id == current_user.id 
-            flash[:error] = "Access Denied. User must be owner of customer to view."
+        if !!customer
+            unless customer.user_id == current_user.id 
+                flash[:error] = "Access Denied. User must be owner of customer to view."
+                redirect_to customers_path 
+            end
+        end 
+        if !customer
+            flash[:error] = "Customer does not exist."
             redirect_to customers_path 
         end
     end

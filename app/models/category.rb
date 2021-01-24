@@ -12,8 +12,10 @@ class Category < ApplicationRecord
     def uniqueness_of_category_per_user
         current_user = User.find_by(id: self.user_id)
         current_user.categories.each do |category|
-            if self.name.capitalize == category.name.capitalize
-                errors.add(:name, "cannot be duplicate")
+            if category != self 
+                if self.name.capitalize == category.name.capitalize
+                    errors.add(:name, "cannot be duplicate")
+                end
             end
         end
     end

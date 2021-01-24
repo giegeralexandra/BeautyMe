@@ -9,7 +9,7 @@ class Appointment < ApplicationRecord
     validates :name, :start_time, :end_time, :price, :customer_id, :category_id, presence: true 
     validates :name, {:length => { :maximum => 20, :minimum => 2}}
     validate :appointment_date_cannot_be_in_the_past, :appointment_end_time_cannot_be_before_start_time, :no_appointments_overlap
-    
+    validates_associated :category, :customer
     scope :future_appointments, -> {where("start_time > ?", Time.now ).order('start_time asc')}
 
     #nested form methods 
@@ -44,10 +44,13 @@ class Appointment < ApplicationRecord
     end
 
     def no_appointments_overlap
-        Appointment.all.each do |appointment|
-            if appointment != self 
-                if appointment.start_time < self.end_time && self.start_time < appointment.end_time
-                    errors.add(:start_time, "conflicts with other appointments")
+        current_user = User.find_by(id: self.user_id)
+        if !!self.start_time || !!self.end_time
+            current_user.appointments.each do |appointment|
+                if appointment != self 
+                    if appointment.start_time < self.end_time && self.start_time < appointment.end_time
+                        errors.add(:start_time, "conflicts with other appointments")
+                    end
                 end
             end
         end

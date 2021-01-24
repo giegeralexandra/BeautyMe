@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-    before_action :assign_user, only: [:show, :edit, :update, :destroy]
+    before_action :assign_user, only: [:show, :edit, :update]
+
 
     def new 
-        @user = User.new 
+        if logged_in?
+            redirect_to appointments_path 
+        else
+            @user = User.new
+        end 
     end
 
     def create 
@@ -27,11 +32,6 @@ class UsersController < ApplicationController
         else 
             render :edit
         end
-    end
-
-    def destroy
-        @user.destory 
-        redirect_to root_path 
     end
 
     private 

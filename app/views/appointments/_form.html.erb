@@ -1,5 +1,3 @@
-<%= render 'validator' %>
-
 <%= form_for @appointment do |f| %> 
     <%= f.hidden_field :category_id %>
     <%= f.hidden_field :customer_id %>
@@ -44,6 +42,6 @@
         <%= c.text_field :name %></p>
     <% end %>
 
-    <%= f.submit "Create Appointment" %>
+    <%= f.submit %>
 
 <% end %> 

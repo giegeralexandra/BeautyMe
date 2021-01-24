@@ -2,7 +2,7 @@
 <br>
 
 <h2>Appointments</h2>
-<% @category.appointments.each do |appointment| %>
+<% @category.appointments.future_appointments.each do |appointment| %>
     <p><%= link_to appointment_name(appointment), category_appointment_path(@category, appointment) %></p>
     <p><%= date_time appointment %></p>
 <% end %>

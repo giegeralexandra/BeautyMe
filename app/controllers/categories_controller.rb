@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+    before_action :redirect_if_not_logged_in 
     before_action :user_can_only_view_own_information, only: [:show, :edit]
     before_action :assign_category, only: [:edit, :update, :show, :destroy, :appointments_index, :appointments, :customers_index, :customers]
 
@@ -11,9 +12,9 @@ class CategoriesController < ApplicationController
     end
 
     def create 
-        category = current_user.categories.build(category_params)
-        if category.save
-            redirect_to category_path(category)
+        @category = current_user.categories.build(category_params)
+        if @category.save
+            redirect_to category_path(@category)
         else 
             render :new
         end
@@ -34,6 +35,7 @@ class CategoriesController < ApplicationController
     end
 
     def destroy 
+        @category.appointments.destroy 
         @category.destroy
         redirect_to categories_path
     end
@@ -69,11 +71,18 @@ class CategoriesController < ApplicationController
     end
 
     def user_can_only_view_own_information
-        category = Category.find_by(id: params[:id])
-        unless category.user_id == current_user.id 
+        category = Category.find_by(id: params[:id])     
+        if !!category
+            unless category.user_id == current_user.id 
             flash[:error] = "Access Denied. User must be owner of category to view."
+            redirect_to categories_path 
+            end
+        end
+        if !category 
+            flash[:error] = "Category does not exist."
             redirect_to categories_path 
         end
     end
+            
 
 end
