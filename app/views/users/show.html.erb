@@ -2,4 +2,4 @@
 <p>Email: <%= @user.email %></p>
 
 <p><%= link_to "Edit Account", edit_user_path(@user) %></p>
-<p><%= button_to "Delete Account", '/users/:id', method: :delete %></p>
+<p class="delete"><%= button_to "Delete Account", '/users/:id', method: :delete %></p>

@@ -5,50 +5,45 @@
     <%= f.hidden_field :customer_id %>
     <%= f.hidden_field :user_id %>
 
-    <%= f.label :name %> 
-    <%= f.text_field :name %>
-    <br>
-    <br>
-    <%= f.label :start_time %> 
-    <%= f.datetime_field :start_time %>
-    <br>
-    <br>
-    <%= f.label :end_time %> 
-    <%= f.datetime_field :end_time %>
-    <br>
-    <br>
-    <%= f.label :price %> 
-    <%= f.number_field :price %>
-    <br>
-    <br>
+    <p><%= f.label :name %> 
+    <%= f.text_field :name %></p>
+
+    <p><%= f.label :start_time %> 
+    <%= f.datetime_field :start_time %></p>
+
+    <p><%= f.label :end_time %> 
+    <%= f.datetime_field :end_time %></p>
+
+    <p><%= f.label :price %> 
+    <%= f.number_field :price %></p>
+
     <h2>Choose or Create New Customer</h2>
-    <%= f.label :customer %> 
-    <%= f.collection_select(:customer_id, current_user.customers.all, :id, :full_name, {include_blank: 'Select a Customer'}) %>
-    <br>
-    <br>
+    <p><%= f.label :customer %> 
+    <%= f.collection_select(:customer_id, current_user.customers.all, :id, :full_name, {include_blank: 'Select a Customer'}) %></p>
+
     <%= f.fields_for :customer, Customer.new do |c| %>
-        <%= c.label :first_name %>
-        <%= c.text_field :first_name %><br><br>
-        <%= c.label :last_name %>
-        <%= c.text_field :last_name %><br><br>
-        <%= c.label :email %>
-        <%= c.email_field :email %><br><br>
-        <%= c.label :phone_number %>
-        <%= c.text_field :phone_number %>
+        <p><%= c.label :first_name %>
+        <%= c.text_field :first_name %></p>
+
+        <p><%= c.label :last_name %>
+        <%= c.text_field :last_name %></p>
+
+        <p><%= c.label :email %>
+        <%= c.email_field :email %></p>
+
+        <p><%= c.label :phone_number %>
+        <%= c.text_field :phone_number %></p>
     <% end %>
-    <br>
-    <br>
+
     <h2>Choose or Create New Category</h2>
-    <%= f.label :category %> 
-    <%= f.collection_select(:category_id, current_user.categories.all, :id, :name, {include_blank: 'Select a Category'}) %>
-    <br>
-    <br>
+    <p><%= f.label :category %> 
+    <%= f.collection_select(:category_id, current_user.categories.all, :id, :name, {include_blank: 'Select a Category'}) %></p>
+ 
     <%= f.fields_for :category, Category.new do |c| %>
-        <%= c.label :name %>
-        <%= c.text_field :name %>
+        <p><%= c.label :name %>
+        <%= c.text_field :name %></p>
     <% end %>
-    <br>
-    <br>
+
     <%= f.submit "Create Appointment" %>
 
 <% end %> 

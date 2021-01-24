@@ -1,5 +1,4 @@
 <h1>Customers</h1>
-<br>
 
 <%= flash[:error] %>
 <% current_user.customers.order(:first_name).each do |customer| %>

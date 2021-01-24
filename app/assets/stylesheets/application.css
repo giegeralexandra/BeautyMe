@@ -25,7 +25,7 @@
   }
 
  body {
-    background: #eea6d9;
+    background:grey;
     font-family: Montserrat;
   }
 
@@ -33,7 +33,7 @@
     background: url("logo.jpg");
     padding: 0px;
     margin: 0px;
-    height: 222px;
+    height: 200px;
   }
 
   h1 {
@@ -53,38 +53,49 @@
 
   p {
     margin-left: 20px;
-    color: white;
+    color: black;
     font-weight: bold;
   }
 
+  a {
+    color: black;
+    font-weight: bold;
+  }
+
+ input {
+    margin-left: 20px;
+  }
+
+  div#homepage {
+    text-align: center;
+    height: 0px; 
+    width: 100%
+  }
 
   div#homepage a{
- 
+    margin: auto
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
     line-height: 40px;
-    display: flex;
     align-items: center;
     text-align: center;
     letter-spacing: -0.015em;
 
     color: #FFFFFF;
-    background: #333333;
+    background:  #eea6d9;
     border-radius: 6px;
 
     width: 130px;
     height: 40px;
 
     display: inline-block; 
+
+    
   }
 
 
-  div#homepage {
-    text-align: center;
-    margin-right: auto; 
-    margin-right: auto; 
-  }
+  
 
   nav {
     text-align: center;
@@ -92,6 +103,7 @@
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
+    background:  #eea6d9;
   }
 
   nav a {
@@ -112,27 +124,6 @@
 
   
 
-  /* Features */
-
-position: absolute;
-width: 104px;
-height: 29px;
-left: 694px;
-top: 22px;
-
-font-family: Montserrat;
-font-style: normal;
-font-weight: 500;
-font-size: 24px;
-line-height: 29px;
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: -0.015em;
-
-/* Gray 6 */
-color: #F2F2F2;
-
 
 
 
@@ -143,8 +134,11 @@ color: #F2F2F2;
     border: 1px solid rgb(221, 221, 221);
     border-collapse: collapse;
     box-sizing: border-box;
-    max-width: 100%;
+    max-width: 95%;
     width: 100%;
+    align: center; 
+    margin-left: auto;
+    margin-right: auto;
   }
 
   tr {
@@ -157,7 +151,7 @@ color: #F2F2F2;
     border-collapse: collapse;
     border-left: 1px solid rgb(221, 221, 221);
     border-right: 1px solid rgb(221, 221, 221);
-    border-top: 0px none rgb(51, 51, 51);
+    border-top: 5px none rgb(51, 51, 51);
     box-sizing: border-box;
     text-align: left;
   }
@@ -167,19 +161,24 @@ color: #F2F2F2;
     vertical-align: top;
     width: 14%;
 
-    border: 1px solid #ddd;
+    border: 5px solid #ddd;
     border-top-color: rgb(221, 221, 221);
     border-top-style: solid;
-    border-top-width: 1px;
+    border-top-width: 5px;
     border-right-color: rgb(221, 221, 221);
     border-right-style: solid;
     border-right-width: 1px;
     border-bottom-color: rgb(221, 221, 221);
     border-bottom-style: solid;
-    border-bottom-width: 1px;
+    border-bottom-width: 5px;
     border-left-color: rgb(221, 221, 221);
     border-left-style: solid;
     border-left-width: 1px;
+  }
+
+  div.calendar-heading {
+    margin-left: 20px;
+    margin-bottom: 10px;
   }
 
   .day {
@@ -195,7 +194,7 @@ color: #F2F2F2;
   .wday-6 {}
 
   .today {
-    background: #FFFFC0
+    background:  #eea6d9;
   }
 
   .past {}
