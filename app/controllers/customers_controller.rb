@@ -36,7 +36,7 @@ class CustomersController < ApplicationController
 
 
     def destroy 
-        @customer.appointments.clear
+        @customer.delete_appointments
         @customer.destroy 
         redirect_to customers_path 
     end

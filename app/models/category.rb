@@ -20,4 +20,10 @@ class Category < ApplicationRecord
         end
     end
 
+    def delete_appointments
+        self.appointments.each do |appt|
+            appt.destroy
+        end
+    end
+
 end

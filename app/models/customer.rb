@@ -13,4 +13,11 @@ class Customer < ApplicationRecord
         first_name.capitalize + " " + last_name.capitalize
     end 
 
+    def delete_appointments
+        self.appointments.each do |appt|
+            appt.destroy
+        end
+    end
+    
+
 end

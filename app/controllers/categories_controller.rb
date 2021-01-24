@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
     end
 
     def destroy 
-        @category.appointments.destroy 
+        @category.delete_appointments
         @category.destroy
         redirect_to categories_path
     end
