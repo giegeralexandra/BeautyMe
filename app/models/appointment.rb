@@ -17,14 +17,14 @@ class Appointment < ApplicationRecord
     def customer_attributes=(attr)
         if attr[:first_name] != ""
             customer = Customer.find_or_create_by(first_name: attr[:first_name], last_name: attr[:last_name], email: attr[:email], phone_number: attr[:phone_number], user_id: self.user_id) 
-            self.customer_id = customer.id
+            self.customer = customer
         end
     end
 
     def category_attributes=(attr)
         if attr[:name] != ""
             category = Category.find_or_create_by(name: attr[:name], user_id: self.user_id) 
-            self.category_id = category.id
+            self.category = category 
         end
     end
 
